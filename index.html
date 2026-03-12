@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sri Kanniyamman Oil Mill – Pure Traditional Wood Pressed Oils</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="logo-icon">🪔</span>
+      <div>
+        <div class="logo-title">Sri Kanniyamman</div>
+        <div class="logo-sub">Oil Mill</div>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" onclick="closeMenu()">Home</a></li>
+      <li><a href="#products" onclick="closeMenu()">Products</a></li>
+      <li><a href="#cart-section" onclick="closeMenu()">Cart <span class="cart-badge" id="cartBadge">0</span></a></li>
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="home" class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Established in Krishnagiri</p>
+    <h1 class="hero-title">Sri Kanniyamman<br/><em>Oil Mill</em></h1>
+    <p class="hero-tagline">Pure Traditional Wood Pressed Oils</p>
+    <p class="hero-desc">Cold-pressed the ancient way — no chemicals, no heat, no compromise. Experience the true taste of tradition in every drop.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+    <div class="hero-badges">
+      <span>🌿 100% Natural</span>
+      <span>⚗️ Chemical Free</span>
+      <span>🪵 Wood Pressed</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="oil-drop-anim">
+      <div class="drop d1"></div>
+      <div class="drop d2"></div>
+      <div class="drop d3"></div>
+    </div>
+    <div class="hero-circle-bg"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ PRODUCTS ══════════════════ -->
+<section id="products" class="products-section">
+  <div class="section-header">
+    <p class="section-eyebrow">Our Collection</p>
+    <h2 class="section-title">Premium Wood Pressed Oils</h2>
+    <p class="section-sub">Each oil is extracted using traditional wooden churners preserving all natural nutrients</p>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- ══════════════════ CART ══════════════════ -->
+<section id="cart-section" class="cart-section">
+  <div class="section-header">
+    <p class="section-eyebrow">Your Selection</p>
+    <h2 class="section-title">Shopping Cart</h2>
+  </div>
+  <div class="cart-container">
+    <div id="cartItems" class="cart-items"></div>
+    <div id="cartEmpty" class="cart-empty">
+      <div class="empty-icon">🛒</div>
+      <p>Your cart is empty</p>
+      <a href="#products" class="btn-primary">Explore Products</a>
+    </div>
+    <div id="cartSummary" class="cart-summary" style="display:none;">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery</span>
+        <span class="free-tag">FREE</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-primary full-width" onclick="scrollToCheckout()">Proceed to Checkout →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CHECKOUT ══════════════════ -->
+<section id="checkout" class="checkout-section">
+  <div class="section-header">
+    <p class="section-eyebrow">Final Step</p>
+    <h2 class="section-title">Place Your Order</h2>
+  </div>
+  <div class="checkout-grid">
+    <!-- Order Summary -->
+    <div class="order-summary-box">
+      <h3>Order Summary</h3>
+      <div id="checkoutItems"></div>
+      <div class="order-total-row">
+        <strong>Total Amount</strong>
+        <strong id="checkoutTotal">₹0</strong>
+      </div>
+
+      <!-- Payment -->
+      <div class="payment-box">
+        <div class="payment-icon">💳</div>
+        <h4>Payment via UPI</h4>
+        <p>Please send payment to:</p>
+        <div class="upi-number">848944768</div>
+        <p class="upi-note">Pay via Google Pay, PhonePe, Paytm or any UPI app before placing order.</p>
+      </div>
+    </div>
+
+    <!-- Customer Form -->
+    <div class="checkout-form-box">
+      <h3>Delivery Details</h3>
+      <form id="orderForm" onsubmit="submitOrder(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="custName" placeholder="Enter your full name" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" id="custPhone" placeholder="10-digit mobile" pattern="[0-9]{10}" required />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="custEmail" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address *</label>
+          <textarea id="custAddress" rows="3" placeholder="House no., Street, Area..." required></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>City *</label>
+            <input type="text" id="custCity" placeholder="City" required />
+          </div>
+          <div class="form-group">
+            <label>Pincode *</label>
+            <input type="text" id="custPin" placeholder="6-digit pincode" pattern="[0-9]{6}" required />
+          </div>
+        </div>
+
+        <div class="payment-confirm-box">
+          <label class="checkbox-label">
+            <input type="checkbox" id="paymentConfirm" required />
+            <span>I have made the payment of <strong id="confirmAmount">₹0</strong> to UPI number <strong>848944768</strong></span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary full-width submit-btn" id="placeOrderBtn">
+          ✅ I Have Paid – Place Order
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SUCCESS MODAL ══════════════════ -->
+<div id="successModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-icon">🎉</div>
+    <h3>Order Placed Successfully!</h3>
+    <p>Thank you for ordering from <strong>Sri Kanniyamman Oil Mill</strong>.</p>
+    <p>Your order has been received and our team will contact you shortly.</p>
+    <div id="orderIdDisplay" class="order-id-display"></div>
+    <button class="btn-primary" onclick="closeModal()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<section id="about" class="about-section">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-circle-1"></div>
+      <div class="about-circle-2"></div>
+      <div class="about-icon-big">🫙</div>
+    </div>
+    <div class="about-content">
+      <p class="section-eyebrow">Our Story</p>
+      <h2 class="section-title">Rooted in Tradition</h2>
+      <p>Sri Kanniyamman Oil Mill produces high quality traditional wood-pressed oils. Our oils are pure, natural, and chemical-free. We are committed to delivering healthy and authentic cooking oils directly to customers.</p>
+      <p>Using ancient wooden churners passed down through generations, we cold-press each batch slowly — retaining natural vitamins, antioxidants, and the rich flavor that modern refining destroys.</p>
+      <div class="about-features">
+        <div class="feature-item">
+          <span class="feature-icon">🌱</span>
+          <div>
+            <strong>Farm to Bottle</strong>
+            <p>Sourced from trusted local farmers</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🔥</span>
+          <div>
+            <strong>No Heat Processing</strong>
+            <p>Cold-pressed below 40°C always</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <div>
+            <strong>No Preservatives</strong>
+            <p>Absolutely zero additives</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section id="contact" class="contact-section">
+  <div class="section-header light">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2 class="section-title">Contact Us</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-card">
+        <span class="contact-icon">📧</span>
+        <div>
+          <strong>Email</strong>
+          <a href="mailto:kanniyammanoilscompraj@gmail.com">kanniyammanoilscompraj@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">📞</span>
+        <div>
+          <strong>Phone / WhatsApp</strong>
+          <a href="tel:+918489644768">84896 44768</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">🕐</span>
+        <div>
+          <strong>Business Hours</strong>
+          <p>Mon – Sat: 8 AM – 7 PM</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">💳</span>
+        <div>
+          <strong>UPI Payment</strong>
+          <p class="upi-display">848944768</p>
+        </div>
+      </div>
+    </div>
+    <div class="map-container">
+      <iframe
+        src="https://maps.google.com/maps?q=SRI+KANNIYAMMAN+OIL+MILL&t=&z=17&ie=UTF8&iwloc=&output=embed"
+        width="100%" height="400"
+        style="border:0;border-radius:16px;"
+        allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span>🪔</span> Sri Kanniyamman Oil Mill
+    </div>
+    <p class="footer-tagline">Pure Traditional Wood Pressed Oils</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Sri Kanniyamman Oil Mill. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Loading Spinner -->
+<div id="loadingOverlay" class="loading-overlay" style="display:none;">
+  <div class="spinner"></div>
+  <p>Placing your order...</p>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

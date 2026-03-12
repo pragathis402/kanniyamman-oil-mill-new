@@ -1,0 +1,33 @@
+services:
+  # ── Backend Node.js Service ──────────────
+  - type: web
+    name: sri-kanniyamman-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false          # Set manually in Render dashboard
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: SELLER_EMAIL
+        value: kanniyammanoilscompraj@gmail.com
+      - key: FRONTEND_URL
+        sync: false          # Set to your frontend URL after deploy
+
+  # ── Frontend Static Site ─────────────────
+  - type: web
+    name: sri-kanniyamman-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: ""
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
