@@ -1094,14 +1094,16 @@ body {
 </div>
 
 <script>
-    /* ═══════════════════════════════════════════
+  /* ═══════════════════════════════════════════
    SRI KANNIYAMMAN OIL MILL — FRONTEND JS
 ═══════════════════════════════════════════ */
 
 // ──────────────────────────────────────────
 //  CONFIG — change BACKEND_URL after deploy
 // ──────────────────────────────────────────
-const BACKEND_URL = 'http://localhost:5000';// Update after Render deploy
+const BACKEND_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ? 'http://localhost:5000'
+  : window.location.origin;
 
 // ──────────────────────────────────────────
 //  PRODUCTS DATA
@@ -1439,7 +1441,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ).forEach(el => el.classList.add('reveal'));
   observeReveal();
 });
-
 </script>
 </body>
 </html>
