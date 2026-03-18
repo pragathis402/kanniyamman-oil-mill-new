@@ -360,7 +360,11 @@ app.post('/api/orders', upload.single('screenshot'), async (req, res) => {
 app.get('*', (req, res) => {
   res.status(404).json({ message: 'API endpoint not found' });
 });
-
+app.use(cors({
+  origin: "*",   // TEMP: allow all for testing
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 // ── Start Server ────────────────────────────
 app.listen(PORT, () => {
   console.log(`\n🪔 Sri Kanniyamman Oil Mill Server`);
